@@ -35,7 +35,7 @@ pipeline {
                     def containerName = (env.BRANCH_NAME == 'main') ? 'node_main' : 'node_dev'
 
                     bat """
-                    for /F "tokens=*" %i in ('docker ps -q --filter "name=${containerName}"') do docker rm -f %i
+                    for /F "tokens=*" %%i in ('docker ps -q --filter "name=${containerName}"') do docker rm -f %%i
                     docker run -d --name ${containerName} -p ${port}:3000 nodemain:v1.0
                     """
                 }
